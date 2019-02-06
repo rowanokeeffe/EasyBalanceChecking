@@ -7,8 +7,8 @@ class TestEasyBalanceCheck(unittest.TestCase):
     def setUp(self):
         pass
  
-    def test_getBalanceCheck(self):
-        self.assertEqual(EasyBalanceChecking.getBalanceCheck(
+    def test_getBalanceReport(self):
+        self.assertEqual(EasyBalanceChecking.getBalanceReport(
             "1000.00\n" \
             "125 Market 125.45\n" \
             "126 Hardware 34.95\n" \
@@ -24,7 +24,7 @@ class TestEasyBalanceCheck(unittest.TestCase):
             "Total expense  198.27\n" \
             "Average expense  39.65\n" \
             )
-        self.assertEqual(EasyBalanceChecking.getBalanceCheck(
+        self.assertEqual(EasyBalanceChecking.getBalanceReport(
             "\n" \
             "1000.00\n" \
             "125 Market 125.45\n" \

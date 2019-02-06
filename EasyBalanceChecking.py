@@ -2,7 +2,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-def getBalanceCheck(spendString):
+def getBalanceReport(spendString):
     balanceString =""
     return balanceString
     
