@@ -7,6 +7,9 @@ class TestEasyBalanceCheck(unittest.TestCase):
     def setUp(self):
         pass
  
+    def test_getCleanString(self):
+        self.assertEqual(EasyBalanceChecking.getCleanString("£3$4!.&aFrg"),"34.aFrg")
+
     def test_getBalanceReport(self):
         self.assertEqual(EasyBalanceChecking.getBalanceReport(
             "1000.00\n" \
