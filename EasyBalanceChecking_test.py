@@ -8,7 +8,7 @@ class TestEasyBalanceCheck(unittest.TestCase):
         pass
  
     def test_getCleanString(self):
-        self.assertEqual(EasyBalanceChecking.getCleanString("£3$4!.&aFrg"),"34.aFrg")
+        self.assertEqual(EasyBalanceChecking.getCleanString("£3$4!.& aFrg"),"34. aFrg")
 
     def test_getBalanceReport(self):
         self.assertEqual(EasyBalanceChecking.getBalanceReport(
