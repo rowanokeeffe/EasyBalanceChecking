@@ -11,7 +11,6 @@ class accountReport:
 
     def addPurchase (self, id, description, value):
         return True
-
 class purchase:
     def __init__(self, id, description, cost):
         self.id = id
