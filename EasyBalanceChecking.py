@@ -25,7 +25,7 @@ def getBalanceReport(spendString):
     thisAccountReport = accountReport()
     #find the starting balance
     thisAccountReport.startingBalance = getStartingBalance(cleanString)
-    
+
     return cleanString
 
 #returns the starting balance as a float
@@ -37,13 +37,9 @@ def getStartingBalance(cleanString):
 #Checks the character against valid criteria
 def isCharacterAllowed (character):
     characterStatus = False
-    if character.islower() \
-        or character.isupper() \
-        or character.isnumeric() \
-        or character == '.' \
-        or character == ' ' \
-        or character == '\n': 
-            characterStatus = True
+    if any ([character.islower(), character.isupper(), character.isnumeric(),
+            character == '.', character == ' ', character == '\n']): 
+        characterStatus = True
     return characterStatus
     
 def getCleanString(string):
