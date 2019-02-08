@@ -2,7 +2,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-class accountReport:
+class accountInfo:
     def __init__(self):
         self.startingBalance = 0.00
         self.purchaseList = []
@@ -14,9 +14,9 @@ class accountReport:
 
 #takes in a clean string and an account report and outputs a
 # fully populated report
-def getAccountReport(thisAccountReport, string):
-    thisAccountReport.startingBalance = getStartingBalance(string)
-    return thisAccountReport
+def buildAccountInfo(thisAccountInfo, string):
+    thisAccountInfo.startingBalance = getStartingBalance(string)
+    return thisAccountInfo
 
 #returns the starting balance as a float
 def getStartingBalance(cleanString):
@@ -33,10 +33,10 @@ class purchase:
 def getBalanceReport(spendString):
     #get rid of dodgy characters
     cleanString = getCleanString(spendString)
-    thisAccountReport = accountReport()
-    getAccountReport(thisAccountReport, cleanString)
+    thisAccountInfo = accountInfo()
+    buildAccountInfo(thisAccountInfo, cleanString)
     #find the starting balance
-    thisAccountReport.startingBalance = getStartingBalance(cleanString)
+    thisAccountInfo.startingBalance = getStartingBalance(cleanString)
     return cleanString
 
 #Checks the character against valid criteria
