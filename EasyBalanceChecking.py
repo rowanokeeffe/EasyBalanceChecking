@@ -11,6 +11,19 @@ class accountReport:
 
     def addPurchase (self, id, description, value):
         return True
+
+#takes in a clean string and an account report and outputs a
+# fully populated report
+def getAccountReport(thisAccountReport, string):
+    thisAccountReport.startingBalance = getStartingBalance(string)
+    return thisAccountReport
+
+#returns the starting balance as a float
+def getStartingBalance(cleanString):
+    #account balance should be the first line of the string
+    splitString = cleanString.splitlines()
+    return float(splitString[0])
+
 class purchase:
     def __init__(self, id, description, cost):
         self.id = id
@@ -20,18 +33,11 @@ class purchase:
 def getBalanceReport(spendString):
     #get rid of dodgy characters
     cleanString = getCleanString(spendString)
- 
     thisAccountReport = accountReport()
+    getAccountReport(thisAccountReport, cleanString)
     #find the starting balance
     thisAccountReport.startingBalance = getStartingBalance(cleanString)
-
     return cleanString
-
-#returns the starting balance as a float
-def getStartingBalance(cleanString):
-    #account balance should be the first line of the string
-    splitString = cleanString.splitlines()
-    return float(splitString[0])
 
 #Checks the character against valid criteria
 def isCharacterAllowed (character):
