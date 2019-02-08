@@ -16,13 +16,29 @@ class accountInfo:
 # fully populated report
 def buildAccountInfo(thisAccountInfo, string):
     thisAccountInfo.startingBalance = getStartingBalance(string)
+    thisAccountInfo.purchaseList = getPurchaseList(string)
     return thisAccountInfo
 
 #returns the starting balance as a float
-def getStartingBalance(cleanString):
+def getStartingBalance(string):
     #account balance should be the first line of the string
-    splitString = cleanString.splitlines()
+    splitString = string.splitlines()
     return float(splitString[0])
+
+#get all purchases from the string and add into the structure
+def getPurchaseList(string):
+    purchaseList = []
+    #split into lines and get rid of starting balance     
+    splitString = string.splitlines()
+    splitString = splitString[1:]
+    for line in splitString:
+        splitLine = line.split()
+        id = int(splitLine[0])
+        desc = splitLine[1]
+        value = float(splitLine[2])
+        thisPurchase = purchase(id, desc, value)
+        purchaseList.append(thisPurchase)
+    return purchaseList
 
 class purchase:
     def __init__(self, id, description, cost):
@@ -35,7 +51,6 @@ def getBalanceReport(spendString):
     cleanString = getCleanString(spendString)
     thisAccountInfo = accountInfo()
     buildAccountInfo(thisAccountInfo, cleanString)
-    #find the starting balance
     thisAccountInfo.startingBalance = getStartingBalance(cleanString)
     return cleanString
 
@@ -46,7 +61,7 @@ def isCharacterAllowed (character):
             character == '.', character == ' ', character == '\n']): 
         characterStatus = True
     return characterStatus
-    
+
 def getCleanString(string):
 #strip out any symbols that are not letters numbers or full stops
 # and empty lines
