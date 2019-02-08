@@ -11,7 +11,6 @@ class TestEasyBalanceCheck(unittest.TestCase):
         thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00)
         thisPurchaseList.append(thisPurchase)
         thatPurchaseList = EasyBalanceChecking.getPurchaseList("1000.00\n 123 Desc 1.00\n")
-        self.asser
         self.assertEqual(thisPurchaseList, thatPurchaseList)
 
     def test_getStartingBalance(self):
