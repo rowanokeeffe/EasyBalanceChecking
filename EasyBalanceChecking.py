@@ -40,11 +40,22 @@ def getPurchaseList(string):
         purchaseList.append(thisPurchase)
     return purchaseList
 
+#NOTE Any new class members have to be added to the __eq__ comp 
+# for unit testing to work!
 class purchase:
     def __init__(self, id, description, cost):
         self.id = id
         self.description = description
         self.cost = cost
+    def __eq__(self, other):
+        if other is None:
+            return False
+        else:
+            #check all members to make sure they are equal 
+            isIdEqual = self.id == other.id
+            isDescriptionEqual = self.description == other.description
+            isCostEqual = self.cost == other.cost 
+            return isIdEqual and isDescriptionEqual and isCostEqual
 
 def getBalanceReport(spendString):
     #get rid of dodgy characters
