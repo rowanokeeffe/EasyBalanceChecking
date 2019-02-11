@@ -31,12 +31,15 @@ def getPurchaseList(string):
     #split into lines and get rid of starting balance     
     splitString = string.splitlines()
     splitString = splitString[1:]
+    #now each line should have id, desc and value seperated by spaces
     for line in splitString:
+        #get rid of the spaces and make a copy of the members
         splitLine = line.split()
         id = int(splitLine[0])
         desc = splitLine[1]
         value = float(splitLine[2])
         thisPurchase = purchase(id, desc, value)
+        #store and check the next one
         purchaseList.append(thisPurchase)
     return purchaseList
 
