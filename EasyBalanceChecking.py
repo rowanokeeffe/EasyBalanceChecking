@@ -44,6 +44,7 @@ def getPurchaseList(string):
         purchaseList.append(thisPurchase)
     return purchaseList
 
+#returns the sum of the purchases in passed in purchaseList
 def getTotalExpense (purchaseList):
     totalExpense = 0.0
     for purchase in purchaseList:
