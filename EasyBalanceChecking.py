@@ -6,8 +6,8 @@ class accountInfo:
     def __init__(self):
         self.startingBalance = 0.00
         self.purchaseList = []
-        self.totalExpense = 0
-        self.averageExpense = 0
+        self.totalExpense = 0.00
+        self.averageExpense = 0.00
 
     def addPurchase (self, id, description, value):
         return True
@@ -17,6 +17,7 @@ class accountInfo:
 def buildAccountInfo(thisAccountInfo, string):
     thisAccountInfo.startingBalance = getStartingBalance(string)
     thisAccountInfo.purchaseList = getPurchaseList(string)
+    thisAccountInfo.totalExpense = getTotalExpense(thisAccountInfo.purchaseList)
     return thisAccountInfo
 
 #returns the starting balance as a float
@@ -42,6 +43,13 @@ def getPurchaseList(string):
         #store and check the next one
         purchaseList.append(thisPurchase)
     return purchaseList
+
+def getTotalExpense (purchaseList):
+    totalExpense = 0.0
+    for purchase in purchaseList:
+        totalExpense += purchase.cost
+    return totalExpense
+
 
 #NOTE Any new class members have to be added to the __eq__ comp 
 # for unit testing to work!
