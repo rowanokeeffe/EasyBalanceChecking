@@ -51,7 +51,6 @@ def getTotalExpense (purchaseList):
         totalExpense += purchase.cost
     return totalExpense
 
-
 #NOTE Any new class members have to be added to the __eq__ comp 
 # for unit testing to work!
 class purchase:
