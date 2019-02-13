@@ -9,9 +9,6 @@ class accountInfo:
         self.totalExpense = 0.00
         self.averageExpense = 0.00
 
-    def addPurchase (self, id, description, value):
-        return True
-
 #takes in a clean string and an account report and outputs a
 # fully populated report
 def buildAccountInfo(thisAccountInfo, string):
