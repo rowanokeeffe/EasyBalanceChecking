@@ -18,6 +18,7 @@ def buildAccountInfo(thisAccountInfo, string):
     thisAccountInfo.startingBalance = getStartingBalance(string)
     thisAccountInfo.purchaseList = getPurchaseList(string)
     thisAccountInfo.totalExpense = getTotalExpense(thisAccountInfo.purchaseList)
+    thisAccountInfo.AverageExpense = getAverageExpense(thisAccountInfo.purchaseList)
     return thisAccountInfo
 
 #returns the starting balance as a float
@@ -50,6 +51,17 @@ def getTotalExpense (purchaseList):
     for purchase in purchaseList:
         totalExpense += purchase.cost
     return totalExpense
+
+#Takes in the purchase list and returns the average expense
+def getAverageExpense (purchaseList):
+    #if we have some purchases get the average spend
+    if len(purchaseList) > 0:
+        totalExpense = getTotalExpense(purchaseList)
+        averageExpense = totalExpense / float(len(purchaseList))
+    else:
+        #NOTE: Needs fault reporting for no purchases.
+        averageExpense = 0.0
+    return averageExpense
 
 #NOTE Any new class members have to be added to the __eq__ comp 
 # for unit testing to work!

@@ -27,6 +27,20 @@ class TestEasyBalanceCheck(unittest.TestCase):
         thisPurchaseList = []
         self.assertEqual(EasyBalanceChecking.getTotalExpense(thisPurchaseList), 0.00)
 
+    def test_getAverageExpense(self):
+        thisPurchaseList = []
+        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00)
+        thisPurchaseList.append(thisPurchase)
+        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00)
+        thisPurchaseList.append(thisPurchase)    
+        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00)
+        thisPurchaseList.append(thisPurchase)
+        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00)
+        thisPurchaseList.append(thisPurchase)    
+        self.assertEqual(EasyBalanceChecking.getAverageExpense(thisPurchaseList), 1.00)        
+        thisPurchaseList = []
+        self.assertEqual(EasyBalanceChecking.getAverageExpense(thisPurchaseList), 0.00)
+
     def test_getStartingBalance(self):
         self.assertEqual(EasyBalanceChecking.getStartingBalance("1000.00\n 34455.67\n"), 1000.00)
 
