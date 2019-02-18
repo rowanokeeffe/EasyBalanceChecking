@@ -2,21 +2,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#takes in a clean string and an account report and populates the structure
 class accountInfo:
-    def __init__(self):
-        self.startingBalance = 0.00
-        self.purchaseList = []
-        self.totalExpense = 0.00
-        self.averageExpense = 0.00
-
-#takes in a clean string and an account report and outputs a
-# fully populated report
-def buildAccountInfo(thisAccountInfo, string):
-    thisAccountInfo.startingBalance = getStartingBalance(string)
-    thisAccountInfo.purchaseList = getPurchaseList(string)
-    thisAccountInfo.totalExpense = getTotalExpense(thisAccountInfo.purchaseList)
-    thisAccountInfo.AverageExpense = getAverageExpense(thisAccountInfo.purchaseList)
-    return thisAccountInfo
+    def __init__(self, string):
+        self.startingBalance = getStartingBalance(string)
+        self.purchaseList = getPurchaseList(string)    
+        self.totalExpense = getTotalExpense(self.purchaseList)
+        self.averageExpense = getAverageExpense(self.purchaseList)
 
 #returns the starting balance as a float
 def getStartingBalance(string):
@@ -80,9 +72,7 @@ class purchase:
 def getBalanceReport(spendString):
     #get rid of dodgy characters
     cleanString = getCleanString(spendString)
-    thisAccountInfo = accountInfo()
-    buildAccountInfo(thisAccountInfo, cleanString)
-    thisAccountInfo.startingBalance = getStartingBalance(cleanString)
+    thisAccountInfo = accountInfo(spendString)
     return cleanString
 
 #Checks the character against valid criteria
