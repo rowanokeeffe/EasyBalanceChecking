@@ -6,7 +6,7 @@
 class accountInfo:
     def __init__(self, string):
         self.startingBalance = getStartingBalance(string)
-        self.purchaseList = getPurchaseList(string)    
+        self.purchaseList = getPurchaseList(string, float(self.startingBalance))    
         self.totalExpense = getTotalExpense(self.purchaseList)
         self.averageExpense = getAverageExpense(self.purchaseList)
 
@@ -17,11 +17,13 @@ def getStartingBalance(string):
     return float(splitString[0])
 
 #get all purchases from the string and add into the structure
-def getPurchaseList(string):
+def getPurchaseList(string, startingBalance):
     purchaseList = []
     #split into lines and get rid of starting balance     
     splitString = string.splitlines()
     splitString = splitString[1:]
+
+    lastBalance = startingBalance
     #now each line should have id, desc and value seperated by spaces
     for line in splitString:
         #get rid of the spaces and make a copy of the members
@@ -29,9 +31,12 @@ def getPurchaseList(string):
         id = int(splitLine[0])
         desc = splitLine[1]
         value = float(splitLine[2])
-        thisPurchase = purchase(id, desc, value)
+        balance = lastBalance - value       
+        thisPurchase = purchase(id, desc, value, balance)
+ 
         #store and check the next one
         purchaseList.append(thisPurchase)
+        lastBalance = balance
     return purchaseList
 
 #returns the sum of the purchases in passed in purchaseList
@@ -55,10 +60,11 @@ def getAverageExpense (purchaseList):
 #NOTE Any new class members have to be added to the __eq__ comp 
 # for unit testing to work!
 class purchase:
-    def __init__(self, id, description, cost):
+    def __init__(self, id, description, cost, balance):
         self.id = id
         self.description = description
         self.cost = cost
+        self.balance = balance
     def __eq__(self, other):
         if other is None:
             return False
@@ -67,7 +73,8 @@ class purchase:
             isIdEqual = self.id == other.id
             isDescriptionEqual = self.description == other.description
             isCostEqual = self.cost == other.cost 
-            return isIdEqual and isDescriptionEqual and isCostEqual
+            isBalanceEqual = self.balance == other.balance
+            return isIdEqual and isDescriptionEqual and isCostEqual and isBalanceEqual
 
 def getBalanceReport(spendString):
     #get rid of dodgy characters

@@ -15,13 +15,14 @@ class TestEasyBalanceCheck(unittest.TestCase):
 
     def test_getTotalExpense(self):
         thisPurchaseList = []
-        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00)
+        startingBalance = 5.00
+        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00, 4.00)
         thisPurchaseList.append(thisPurchase)
-        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00)
+        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00, 3.00)
         thisPurchaseList.append(thisPurchase)    
-        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00)
+        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00, 2.00)
         thisPurchaseList.append(thisPurchase)
-        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00)
+        thisPurchase = EasyBalanceChecking.purchase(123, "Desc", 1.00, 1.00)
         thisPurchaseList.append(thisPurchase)    
         self.assertEqual(EasyBalanceChecking.getTotalExpense(thisPurchaseList), 4.00)
         thisPurchaseList = []
