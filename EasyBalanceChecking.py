@@ -72,8 +72,28 @@ class purchase:
 def getBalanceReport(spendString):
     #get rid of dodgy characters
     cleanString = getCleanString(spendString)
-    thisAccountInfo = accountInfo(spendString)
-    return cleanString
+    #populate the account info class
+    thisAccountInfo = accountInfo(cleanString)
+    #turn it into a string
+    report = buildAccountReport(thisAccountInfo)
+    return report
+
+
+def buildAccountReport(accountInfo):
+    currentBalance = float(accountInfo.startingBalance)
+    report = "Original Balance: " + "{:.2f}".format(currentBalance) + "\n"
+    for purchase in accountInfo.purchaseList:
+        report += str(purchase.id) + " "
+        report += str(purchase.description) + " "
+        report += "{:.2f}".format(purchase.cost) + " "
+        #Store the balance after this purchase
+        currentBalance -= purchase.cost        
+        report += "Balance " + "{:.2f}".format(currentBalance)
+        report += "\n"
+    report += "Total expense  " + "{:.2f}".format(accountInfo.totalExpense) + "\n"
+    report += "Average expense  " + "{:.2f}".format(accountInfo.averageExpense) + "\n"
+    return report
+
 
 #Checks the character against valid criteria
 def isCharacterAllowed (character):
@@ -91,7 +111,10 @@ def getCleanString(string):
         if isCharacterAllowed(character):
             cleanString = cleanString + character
     #now get rid of empty lines
-    cleanString.replace("\n\n", '\n')
+    cleanString = cleanString.replace("\n\n", '\n')
+    #Delete new line if it is on the front
+    while cleanString[0] == '\n':
+        cleanString = cleanString[1:]
     return cleanString
 
 def main():

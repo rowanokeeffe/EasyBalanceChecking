@@ -5,6 +5,7 @@ import EasyBalanceChecking
  
 class TestEasyBalanceCheck(unittest.TestCase):
     def setUp(self):
+        self.maxDiff = None
         pass
     def test_getPurchaseList(self):
         thisPurchaseList = []
@@ -45,7 +46,7 @@ class TestEasyBalanceCheck(unittest.TestCase):
         self.assertEqual(EasyBalanceChecking.getStartingBalance("1000.00\n 34455.67\n"), 1000.00)
 
     def test_getCleanString(self):
-        self.assertEqual(EasyBalanceChecking.getCleanString("\n£3$4!.& aFrg"),"\n34. aFrg")
+        self.assertEqual(EasyBalanceChecking.getCleanString("\n£3$4!.& aFrg"),"34. aFrg")
 
     def test_getBalanceReport(self):
         self.assertEqual(EasyBalanceChecking.getBalanceReport(
